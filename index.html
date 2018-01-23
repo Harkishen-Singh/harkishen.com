@@ -20,6 +20,20 @@
 
         <!-- THEME STYLES -->
         <link href="css/layout.min.css" rel="stylesheet" type="text/css"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                $("#skills").hide();
+                $("li#nn").hide();
+                $("#do").click(function(){
+                    $("li#nn").slideToggle();
+                });
+                $("#skills_control").click(function(){
+                    $("div#skills").slideToggle();
+                });
+            });
+            
+        </script>
 
         <!-- Favicon -->
         <link rel="shortcut icon" href="favicon.ico"/>
@@ -110,16 +124,17 @@
                         <div class="section-seperator margin-b-50">
                             <div class="margin-b-50">
                                 <div class="margin-b-30">
-                                    <h2>About Me</h2>
+                                    <h2>About Me</h2> 
                                     <p>Hello, I' m Harkishen Singh, pursuing Bachelor of Technology degree in Computer Science and Engineering at College of Engineering and Technology. <br/> I have an immense love for CSE and can go to any extend to explore it. <br>
-                                       <strong> My AIR JEE Mains Rank was 21241, score of 161/360, JEE Advance Rank was 20553 at a score of 147/366 and OJee Counselling Rank 2.</strong><br> I was given an option of CSE NIT Silchar, but due to its remoteness, my parents denied it. Later on, I had been offered BTech. in Electronics and Instrumentation at NIT Rourkela. But I was not ready for it as i had made myself up for CSE at all costs.</p>
-                                    <p>I find myself lucky to be a part of CET CSE family, and a member at <a href='https://zairza.in/' >  Zairza Tech Society </a>.</p>
+                                       <strong> My AIR JEE Mains Rank was 21241, score of 161/360 and JEE Advance Rank was 20553 at a score of 147/366.</strong><br> I was given an option of CSE NIT Silchar, but due to its remoteness, my parents denied it. Later on, I had been offered BTech. in Electronics and Instrumentation at NIT Rourkela. But I was not ready for it as i had made myself up for CSE at all costs.</p>
+                                    <p>I find myself lucky to be a part of CET CSE family, and a member at <a href='https://zairza.in/' >  Zairza Tech Scoiety </a>.</p>
                                 </div>
                                <!--<a href="#" class="btn-theme btn-theme-md btn-default-bg text-uppercase">Download my CV</a>-->
                             </div>
                         </div>
 
                         <h2>My Skills</h2>
+                        <div id="skills">
                         <!-- Progress Box -->
                         <ol>
                             <li>Java</li>
@@ -129,12 +144,16 @@
                             <li>Database Management using MySQL and MongoDB </li>
                             <li>Javascript</li>
                             <li>Web Development</li>
-                            <li>Server Development</li>
-                            <li>Android Development(basics)</li>
-                            <li>Web Applications</li>
-                            <li>Ejs</li>
-                            <li>Many Others.. being a secret.. :XD</li>
+                            <li id="nn">Server Development</li>
+                            <li id="nn">Android Development(basics)</li>
+                            <li id="nn">Web Applications</li>
+                            <li id="nn">Ejs</li>
+                            <li id="nn">Many Others.. being a secret.. :XD</li>
+                            
                         </ol>
+                        <input type="button" value="Less/More" id="do"/> 
+                        </div>
+                        <input type="button" value="Show/Hide Skills" id="skills_control"/>
                         <!-- End Progress Box -->
                     </div>
                 </div>
@@ -314,7 +333,7 @@
                         COLLEGE OF ENGINEERING AND TECHNOLOGY
                     </div>
                     <div class="col-xs-6 text-right sm-text-left">
-                        <p class="margin-b-0"><a class="fweight-700" href="https://www.facebook.com/Harkishens">DESIGNED AND DEVELOPED BY : HARKISHEN SINGH </a></p>
+                        <p class="margin-b-0"><a class="fweight-700" href="https://www.facebook.com/Harkishens">DESIGNED BY : HARKISHEN SINGH </a></p>
                     </div>
                 </div>
                 <!--// end row -->
