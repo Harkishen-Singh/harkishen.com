@@ -320,7 +320,7 @@
             </div>
             </div>
         </div>
-
+        <h4>Stack Operations Below. ** A React Implementation **</h4>
         <div id="example"></div>
 
             <div id="part"></div>
@@ -384,70 +384,77 @@
                 <Friends>Subham Mishra</Friends>
               </div>, document.getElementById('example'));*/
 
-        var Board = React.createClass({
-            getInitialState: function(){
-                return {friends:[
-                    'sample'
-                ],
-                newAddition : false
-              }
-            },
-            appendc:function (v,i) {
-              var arr = this.state.friends;
-              arr.push(v);
-              this.setState({friends: arr});
-              console.log('Appended the stack at index '+i);
-            },
-            updateStack: function (v,i) {
-              var arr = this.state.friends;
-              arr[i] = v;
-              this.setState({friends: arr});
-            },
-            pop: function (i) {
-              var arr = this.state.friends;
-              arr.splice(i,1);
-              this.setState({friends:arr});
-            },
-            ask: function () {
-              this.setState({newAddition: true});
-            },
-            askRender: function () {
-              return (
-                <div>
-                  <textarea defaultValue="enter Something here" ref='newV' ></textarea>
-                  <button onClick={this.push}>Add</button>
-                  {
-                this.state.friends.map(this.eachComponent)
-                  }
-                </div>
-              );
-            },
-            push:function () {
-              this.setState({newAddition: false});
-              var text = this.refs.newV.value;
-              var arr = this.state.friends;
-              arr.push(text);
-              this.setState({friends: arr});
-            },
-            eachComponent: function (text,i) {
-                  return (<Friends key={i} index={i} appendCom={this.appendc} popCom={this.pop} updateCom={this.updateStack} >{text}</Friends>);
-            },
+     
+var Board = React.createClass({
+    getInitialState: function(){
+        return {friends:[
+            'sample'
+        ],
+        newAddition : false, popOperation: false
+      }
+    },
+    appendc:function (v,i) {
+      var arr = this.state.friends;
+      arr.push(v);
+      this.setState({friends: arr});
+      console.log('Appended the stack at index '+i);
+    },
+    updateStack: function (v,i) {
+      var arr = this.state.friends;
+      arr[i] = v;
+      this.setState({friends: arr});
+    },
+    pop: function (i) {
+      var arr = this.state.friends;
+      arr.splice(i,1);
+      this.setState({friends:arr});
+    },
+    ask: function () {
+      this.setState({newAddition: true});
+    },
+    askRender: function () {
+      return (
+        <div>
+          <textarea defaultValue="enter Something here" ref='newV' ></textarea>
+          <button onClick={this.push}>Add</button>
+          {
+        this.state.friends.map(this.eachComponent)
+          }
+        </div>
+      );
+    },
+    push:function () {
+      this.setState({newAddition: false});
+      var text = this.refs.newV.value;
+      var arr = this.state.friends;
+      arr.push(text);
+      this.setState({friends: arr});
+    },
+    eachComponent: function (text,i) {
+          return (<Friends key={i} index={i} appendCom={this.appendc} popCom={this.pop} updateCom={this.updateStack} >{text}</Friends>);
+    },
+    poperOne: function (i) {
+      this.setState({popOperation: false});
+      var arr = this.state.friends;
+      arr.splice(i,1);
+      this.setState({friends: arr});
+    },
+    render: function(){
+        if(this.state.newAddition){
+          return this.askRender();
+        }
+        else{
+        return (<div>
+          <button onClick={this.ask} >+ Push</button>
+          <button onClick={this.poperOne}>- Pop</button>
+        {
+          this.state.friends.map(this.eachComponent)
 
-            render: function(){
-                if(this.state.newAddition){
-                  return this.askRender();
+        }</div>
+        );
+    }}
+});
 
-                }
-                else{
-                return (<div>
-                  <button onClick={this.ask} >+ New</button>
-                {
-                  this.state.friends.map(this.eachComponent)
-
-                }</div>
-                );
-            }}
-        });
 
         ReactDOM.render(<Board />, document.getElementById('example'));
 </script>
