@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>React - Template</title>
+
+    <script src="js2/react.min.js"></script>
+<script src="js2/react-dom.min.js"></script>
+<script src="js2/browser.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="../css/main.css" />
+    <link href="css2/style.css" rel="stylesheet">
+</head>
+<body>
+  <div style="background-color:blue;color:white;" id="buttonFunctions">
+
+  </div>
+
+  </div>
+  <h3>A Mini Stimulation of Queue Operations Below</h3>
+
+  <div id="example"></div>
+
+    <div id="part"></div>
+
+
+  <script type="text/babel">
+
+  var Friends = React.createClass({
+      getInitialState: function(){
+          return {editing: false}
+      },
+      save: function(){
+          this.setState({editing : false});
+          this.props.updateCom(this.refs.newText.value, this.props.index);
+      },
+      edit: function(){
+          this.setState({editing : true});
+          /*this.props.updateCom(this.refs.newText.value, this.props.index);*/
+      },
+      remove: function(){
+        this.setState({editing: false});
+        this.props.popCom(this.props.index);
+      },
+      push: function () {
+
+      },
+      renderEdit: function(){
+          return (
+          <div>
+              <textarea defaultValue={this.props.children} ref='newText' ></textarea>
+              <button onClick={this.save} >Save</button>
+        </div>);
+      },
+      renderNormal: function(){
+          return (
+          <div>
+              <h2>{this.props.children} </h2>
+              <button onClick={this.edit} >Edit</button>
+              <button onClick={this.remove} >Remove</button>
+        </div>);
+      },
+
+      render: function(){
+          /*return (
+          <div>
+            <h4>Name : {this.props.children} </h4>
+              <button>Edit</button>
+              <button>Save</button>
+              <button>Remove</button>
+        </div>);*/
+          if(this.state.editing){
+              return this.renderEdit();
+          }else{
+              return this.renderNormal();
+          }
+      }
+  });
+/*ReactDOM.render(<div>
+        <Friends>Harkishen</Friends>
+        <Friends>Anirudh</Friends>
+        <Friends>Subham Mishra</Friends>
+      </div>, document.getElementById('example'));*/
+
+var Board = React.createClass({
+    getInitialState: function(){
+        return {friends:[
+            'sample'
+        ],
+        newAddition : false, popOperation: false
+      }
+    },
+    appendc:function (v,i) {
+      var arr = this.state.friends;
+      arr.push(v);
+      this.setState({friends: arr});
+      console.log('Appended the stack at index '+i);
+    },
+    updateStack: function (v,i) {
+      var arr = this.state.friends;
+      arr[i] = v;
+      this.setState({friends: arr});
+    },
+    pop: function (i) {
+      var arr = this.state.friends;
+      arr.splice(i,1);
+      this.setState({friends:arr});
+    },
+    ask: function () {
+      this.setState({newAddition: true});
+    },
+    askRender: function () {
+      return (
+        <div>
+          <textarea defaultValue="enter Something here" ref='newV' ></textarea>
+          <button onClick={this.push}>Add</button>
+          {
+        this.state.friends.map(this.eachComponent)
+          }
+        </div>
+      );
+    },
+    push:function () {
+      this.setState({newAddition: false});
+      var text = this.refs.newV.value;
+      var arr = this.state.friends;
+      arr.push(text);
+      this.setState({friends: arr});
+    },
+    eachComponent: function (text,i) {
+          return (<Friends key={i} index={i} appendCom={this.appendc} popCom={this.pop} updateCom={this.updateStack} >{text}</Friends>);
+    },
+    poperOne: function (i) {
+      this.setState({popOperation: false});
+      var arr = this.state.friends;
+      arr.splice(i,1);
+      this.setState({friends: arr});
+    },
+    render: function(){
+        if(this.state.newAddition){
+          return this.askRender();
+        }
+        else{
+        return (<div>
+          <button onClick={this.ask} >+ Push</button>
+          <button onClick={this.poperOne}>- Pop</button>
+        {
+          this.state.friends.map(this.eachComponent)
+
+        }</div>
+        );
+    }}
+});
+
+ReactDOM.render(<Board />, document.getElementById('example'));
+
+  </script>
+</body>
+</html>
